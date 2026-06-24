@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Dashboard</title>
+
+  <div th:replace="~{fragments/head :: head}"></div>
+</head>
+ 
+
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div th:replace="~{fragments/preloader :: preloader}"></div>
+
+  <!-- Navbar -->
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <div layout:fragment="content">
+        <!-- PAGE CONTENT WILL LOAD HERE -->
+    </div>
+
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+<div th:replace="~{fragments/control-sidebar :: control-sidebar}"></div>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<!-- scripts -->
+<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>
