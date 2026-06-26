@@ -20,12 +20,6 @@ public class DashboardController {
             return "pages/active_employee";
         }
 
-    @GetMapping({"/employee/employee_list"})
-        public String employee_list(Model model){
-            model.addAttribute("activePage", "employee_list");
-            return "pages/employee_list";
-        }
-
     @GetMapping({"/employee/inactive_employee"})
         public String inactive_employee(Model model){
             model.addAttribute("activePage", "inactive_employee");
@@ -36,6 +30,12 @@ public class DashboardController {
         public String settings(Model model){
             model.addAttribute("activePage", "settings");
             return "pages/settings";
+        }
+
+    @GetMapping({"/admin"})
+        public String admin(Model model){
+            model.addAttribute("activePage", "admin");
+            return "pages/admin";
         }
 
 }

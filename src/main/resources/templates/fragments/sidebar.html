@@ -19,7 +19,7 @@
       </div>
 
       <!-- SidebarSearch Form -->
-      <div class="form-inline">
+      <!-- <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
@@ -28,7 +28,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -45,11 +45,9 @@
           </li>
 
           <li class="nav-header">OPERATIONS</li>
-            <li class="nav-item has-treeview" th:classappend="${activePage == 'employee_list'
-                  || activePage == 'active_employee'
+            <li class="nav-item has-treeview" th:classappend="${activePage == 'active_employee'
                   || activePage == 'inactive_employee'} ? ' menu-open'">
-            <a href="#" class="nav-link" th:classappend="${activePage == 'employee_list'
-                  || activePage == 'active_employee'
+            <a href="#" class="nav-link" th:classappend="${activePage == 'active_employee'
                   || activePage == 'inactive_employee'} ? ' active'">
               <i class="nav-icon fas fa-address-book"></i>
               <p>
@@ -58,12 +56,6 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/employee/employee_list}" class="nav-link" th:classappend="${activePage == 'employee_list'} ? ' active'">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Employee List</p>
-                </a>
-              </li>
               <li class="nav-item">
                 <a th:href="@{/employee/active_employee}" class="nav-link" th:classappend="${activePage == 'active_employee'} ? ' active'">
                   <i class="far fa-circle nav-icon"></i>
@@ -78,6 +70,14 @@
               </li>
             </ul>
             </li>
+            <li class="nav-item">
+            <a th:href="@{/admin}" class="nav-link" th:classappend="${activePage == 'admin'} ? ' active'">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Admin
+              </p>
+            </a>
+          </li>
             <li class="nav-item">
             <a th:href="@{/settings}" class="nav-link" th:classappend="${activePage == 'settings'} ? ' active'">
               <i class="nav-icon fas fa-cog"></i>
