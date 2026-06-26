@@ -25,13 +25,24 @@
   <!-- Main Sidebar Container -->
   <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <div layout:fragment="content">
-        <!-- PAGE CONTENT WILL LOAD HERE -->
-    </div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
 
-  </div>
+    <!-- Content Header (Page header) -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <!-- Dynamic Page Content -->
+            <div layout:fragment="content">
+                <!-- PAGE CONTENT WILL LOAD HERE -->
+            </div>
+
+        </div>
+    </section>
+
+</div>
   <!-- /.content-wrapper -->
    <div th:replace="~{fragments/footer :: footer}"></div>
 

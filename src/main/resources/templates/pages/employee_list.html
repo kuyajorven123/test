@@ -10,7 +10,58 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <h1>This is active employee</h1>
+        <h1 style="font-size: xx-large;">Employee List</h1>
+         <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">DataTable with default features</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Lastname</th>
+                    <th>Position</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Tools</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>test@email.com</td>
+                    <td>test</td>
+                    <td>Active</td>
+                    <td>
+                        <button class="btn btn-sm btn-success">Edit</button> 
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>test@email.com</td>
+                    <td>test</td>
+                    <td>Inactive</td>
+                    <td>
+                        <button class="btn btn-sm btn-success">Edit</button> 
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </td>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
     </div>
 </body>
 </html>
