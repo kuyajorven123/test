@@ -14,12 +14,6 @@ public class DashboardController {
             return "pages/dashboard";
         }
 
-    @GetMapping({"/employee/active_employee"})
-        public String active_employee(Model model){
-            model.addAttribute("activePage", "active_employee");
-            return "pages/active_employee";
-        }
-
     @GetMapping({"/employee/inactive_employee"})
         public String inactive_employee(Model model){
             model.addAttribute("activePage", "inactive_employee");
