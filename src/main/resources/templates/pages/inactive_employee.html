@@ -11,6 +11,15 @@
 <body>
     <div layout:fragment="content">
         <h1 style="font-size: xx-large;">Inactive Employee</h1>
+
+        <!-- Alerts -->
+         <div th:if="${param.reactivate_success}" class="alert alert-success">
+          Employee Reactivated Successfully!
+           <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+         <!-- /Alerts -->
+
+
          <div class="card">
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -28,34 +37,22 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>test@email.com</td>
-                    <td>test</td>
-                    <td>June 2026</td>
-                    <td>Inactive</td>
+                  <tr th:each="employees : ${employee}">
+                    <td th:text="${employees.firstname}"></td>
+                    <td th:text="${employees.middlename}"></td>
+                    <td th:text="${employees.lastname}"></td>
+                    <td th:text="${employees.position}"></td>
+                    <td th:text="${employees.email}"></td>
+                    <td th:text="${employees.address}"></td>
+                    <td th:text="${#temporals.format(employees.birthday, 'MMMM dd, yyyy')}"></td>
+                    <td th:text="${employees.status}"></td>
                     <td>
-                        <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-activate"><i class="fas fa-check"></i> Activate</button> 
-                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete"><i class="fas fa-trash"></i> Delete</button>
+                        <button type="button" class="btn btn-sm btn-success edit-employee-btn" data-toggle="modal" data-target="#modal-activate" th:data-id="${employees.id}"><i class="fas fa-check"></i> Activate</button> 
+                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete" th:data-id="${employees.id}"><i class="fas fa-trash"></i> Delete</button>
                     </td>
                   </tr> 
-                  <tr>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>test@email.com</td>
-                    <td>test</td>
-                    <td>June 2026</td>
-                    <td>Inactive</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-activate"><i class="fas fa-check"></i> Activate</button> 
-                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete"><i class="fas fa-trash"></i> Delete</button>
-                    </td>
-                  </tr>
+                  </thead>
+                  <tbody>
                   </tfoot>
                 </table>
               </div>
@@ -72,13 +69,21 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <form th:action="@{/reactivate}" method="post">
             <div class="modal-body">
+
+              <input type="hidden" id="reactivateEmployeeId" name="id">
+
               <p>Are you sure you want to reactivate this employee?</p>
+              <p>Name: <b><span id="reactivateName"></span></b></p>
+              <p>Position: <b><span id="reactivatePosition"></span></b></p>
+              <p>Status: <b><span id="reactivateStatus"></span></b></p>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary">Yes</button>
+              <button type="submit" class="btn btn-primary">Yes</button>
             </div>
+            </form>
           </div>
         </div>
         </div>

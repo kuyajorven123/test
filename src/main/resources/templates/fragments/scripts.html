@@ -64,4 +64,82 @@
   });
 </script>
 
+<!-- For Edit Modal -->
+<script>
+$('#modal-edit').on('show.bs.modal', function (event) {
+
+    var button = $(event.relatedTarget);
+    var id = button.data('id');
+
+    $.ajax({
+        url: '/employee/active_employee/' + id,
+        type: 'GET',
+        success: function(employee) {
+
+            $('#employeeId').val(employee.id);
+            $('#firstname').val(employee.firstname);
+            $('#middlename').val(employee.middlename);
+            $('#lastname').val(employee.lastname);
+            $('#address').val(employee.address);
+            $('#position').val(employee.position);
+            $('#email').val(employee.email);
+            $('#birthday').val(employee.birthday);
+        },
+        error: function() {
+            alert("Unable to load employee.");
+        }
+    });
+
+});
+</script>
+
+<!-- For Deactivate Modal -->
+<script>
+$('#modal-deactivate').on('show.bs.modal', function (event) {
+
+    var button = $(event.relatedTarget);
+    var id = button.data('id');
+
+    $.ajax({
+        url: '/employee/active_employee/' + id,
+        type: 'GET',
+        success: function(employee) {
+            $('#deactivateEmployeeId').val(employee.id);
+            $('#deactivateName').text(employee.firstname + ' ' + employee.middlename + ' ' + employee.lastname);
+            $('#deactivatePosition').text(employee.position);
+            $('#deactivateStatus').text(employee.status);
+        },
+        error: function() {
+            alert("Unable to load employee.");
+        }
+    });
+
+});
+</script>
+
+
+<!-- For Reactivation Modal -->
+
+<script>
+$('#modal-activate').on('show.bs.modal', function (event) {
+
+    var button = $(event.relatedTarget);
+    var id = button.data('id');
+
+    $.ajax({
+        url: '/employee/inactive_employee/' + id,
+        type: 'GET',
+        success: function(employee) {
+            $('#reactivateEmployeeId').val(employee.id);
+            $('#reactivateName').text(employee.firstname + ' ' + employee.middlename + ' ' + employee.lastname);
+            $('#reactivatePosition').text(employee.position);
+            $('#reactivateStatus').text(employee.status);
+        },
+        error: function() {
+            alert("Unable to load employee.");
+        }
+    });
+
+});
+</script>
 </div>
