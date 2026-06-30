@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 
@@ -43,6 +44,13 @@ public class InactiveEmployeeController {
 
      employeeRepository.save(existing);
      return "redirect:/employee/inactive_employee?reactivate_success";
+    }
+
+
+    @PostMapping({"/delete"})
+    public String deleted(@RequestParam Long id) {
+        employeeRepository.deleteById(id);
+        return "redirect:/employee/inactive_employee?delete_success";
     }
 
 }

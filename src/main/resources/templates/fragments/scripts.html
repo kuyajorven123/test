@@ -142,4 +142,27 @@ $('#modal-activate').on('show.bs.modal', function (event) {
 
 });
 </script>
+
+<script>
+$('#modal-delete').on('show.bs.modal', function (event) {
+
+    var button = $(event.relatedTarget);
+    var id = button.data('id');
+
+    $.ajax({
+        url: '/employee/inactive_employee/' + id,
+        type: 'GET',
+        success: function(employee) {
+            $('#deleteEmployeeId').val(employee.id);
+            $('#deleteName').text(employee.firstname + ' ' + employee.middlename + ' ' + employee.lastname);
+            $('#deletePosition').text(employee.position);
+            $('#deleteStatus').text(employee.status);
+        },
+        error: function() {
+            alert("Unable to load employee.");
+        }
+    });
+
+});
+</script>
 </div>
