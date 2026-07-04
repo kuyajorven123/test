@@ -21,6 +21,7 @@ public class Employee {
     private String email;
     private String password;
     private String status;
+    private String role;
 
     public Long getId(){
         return id;
@@ -90,5 +91,12 @@ public class Employee {
     }
     public void setStatus(String status){
         this.status = status;
+    }
+
+    public String getRole(){
+        return role;
+    }
+    public void setRole(String role){
+        this.role = role;
     }
 }

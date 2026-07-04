@@ -8,19 +8,19 @@ import org.springframework.ui.Model;
 @Controller
 public class DashboardController {
 
-    @GetMapping({"/","/dashboard"})
+    @GetMapping({"/","admin/dashboard"})
         public String dashboard(Model model){
             model.addAttribute("activePage", "dashboard");
             return "pages/dashboard";
         }
 
-    @GetMapping({"/settings"})
+    @GetMapping({"admin/settings"})
         public String settings(Model model){
             model.addAttribute("activePage", "settings");
             return "pages/settings";
         }
 
-    @GetMapping({"/admin"})
+    @GetMapping({"admin/admin"})
         public String admin(Model model){
             model.addAttribute("activePage", "admin");
             return "pages/admin";

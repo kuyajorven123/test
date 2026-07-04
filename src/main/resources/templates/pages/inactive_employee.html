@@ -74,7 +74,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form th:action="@{/reactivate}" method="post">
+            <form th:action="@{/admin/reactivate}" method="post">
             <div class="modal-body">
 
               <input type="hidden" id="reactivateEmployeeId" name="id">
@@ -103,7 +103,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form th:action="@{/delete}" method="post">
+            <form th:action="@{/admin/delete}" method="post">
             <div class="modal-body">
               <input type="hidden" id="deleteEmployeeId" name="id">
               <p>Are you sure you want to delete this employee?</p>

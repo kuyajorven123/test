@@ -87,7 +87,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form th:action="@{/create}" method="post">
+              <form th:action="@{/admin/create}" method="post">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6">
@@ -173,7 +173,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form th:action="@{/update}" method="post">
+              <form th:action="@{/admin/update}" method="post">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6">
@@ -260,7 +260,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form th:action="@{/deactivate}" method="post">
+            <form th:action="@{/admin/deactivate}" method="post">
             <div class="modal-body">
 
               <input type="hidden" id="deactivateEmployeeId" name="id">

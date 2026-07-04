@@ -1,7 +1,7 @@
   <!-- Main Sidebar Container -->
   <aside th:fragment="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a th:href="@{/dashboard}" class="brand-link">
+    <a th:href="@{/admin/dashboard}" class="brand-link">
       <img th:src="@{/adminlte/dist/img/EMSLogo.jpg}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">JCS Corporation</span>
     </a>
@@ -36,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-            <a th:href="@{/dashboard}" class="nav-link" th:classappend="${activePage == 'dashboard'} ? ' active'">
+            <a th:href="@{/admin/dashboard}" class="nav-link" th:classappend="${activePage == 'dashboard'} ? ' active'">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -57,13 +57,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a th:href="@{/employee/active_employee}" class="nav-link" th:classappend="${activePage == 'active_employee'} ? ' active'">
+                <a th:href="@{/admin/employee/active_employee}" class="nav-link" th:classappend="${activePage == 'active_employee'} ? ' active'">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Active Employee</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a th:href="@{/employee/inactive_employee}" class="nav-link" th:classappend="${activePage == 'inactive_employee'} ? ' active'">
+                <a th:href="@{/admin/employee/inactive_employee}" class="nav-link" th:classappend="${activePage == 'inactive_employee'} ? ' active'">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Inactive Employee</p>
                 </a>
@@ -71,7 +71,7 @@
             </ul>
             </li>
             <li class="nav-item">
-            <a th:href="@{/admin}" class="nav-link" th:classappend="${activePage == 'admin'} ? ' active'">
+            <a th:href="@{/admin/admin}" class="nav-link" th:classappend="${activePage == 'admin'} ? ' active'">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Admin
@@ -79,7 +79,7 @@
             </a>
           </li>
             <li class="nav-item">
-            <a th:href="@{/settings}" class="nav-link" th:classappend="${activePage == 'settings'} ? ' active'">
+            <a th:href="@{/admin/settings}" class="nav-link" th:classappend="${activePage == 'settings'} ? ' active'">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Settings

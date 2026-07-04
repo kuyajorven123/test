@@ -18,7 +18,7 @@ public class InactiveEmployeeController {
     EmployeeRepository employeeRepository;
 
     
-    @GetMapping({"/employee/inactive_employee/{id}"})
+    @GetMapping({"/admin/employee/inactive_employee/{id}"})
     @ResponseBody
     public Employee getEmployee(@PathVariable Long id) {
 
@@ -27,7 +27,7 @@ public class InactiveEmployeeController {
     }
     
 
-    @GetMapping({"/employee/inactive_employee"})
+    @GetMapping({"/admin/employee/inactive_employee"})
         public String inactive_employee(Model model){
             model.addAttribute("activePage", "inactive_employee");
              model.addAttribute("employee", employeeRepository.findByStatus("Inactive"));
@@ -35,7 +35,7 @@ public class InactiveEmployeeController {
         }
         
 
-    @PostMapping({"/reactivate"})
+    @PostMapping({"/admin/reactivate"})
     public String reactivate(@ModelAttribute Employee employee){
         Employee existing = employeeRepository.findById(employee.getId())
             .orElseThrow(() -> new RuntimeException("Employee not found"));
@@ -43,14 +43,14 @@ public class InactiveEmployeeController {
      existing.setStatus("Active");
 
      employeeRepository.save(existing);
-     return "redirect:/employee/inactive_employee?reactivate_success";
+     return "redirect:/admin/employee/inactive_employee?reactivate_success";
     }
 
 
-    @PostMapping({"/delete"})
+    @PostMapping({"/admin/delete"})
     public String deleted(@RequestParam Long id) {
         employeeRepository.deleteById(id);
-        return "redirect:/employee/inactive_employee?delete_success";
+        return "redirect:/admin/employee/inactive_employee?delete_success";
     }
 
 }
