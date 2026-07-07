@@ -1,11 +1,13 @@
-package com.project.test;
+package com.project.test.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/employee")
 public class EmployeeController {
-    @GetMapping({"/employee/dashboard"})
+    @GetMapping({"/dashboard"})
     public String employeeDashboard(){
         return "pages/employee/dashboard";
     }

@@ -1,4 +1,4 @@
-package com.project.test;
+package com.project.test.controller;
 
 import java.util.Optional;
 
@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import com.project.test.model.Employee;
+import com.project.test.model.EmployeeRepository;
 
 
 
@@ -26,7 +28,7 @@ public class ActiveEmployeeController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping({"/admin/employee/active_employee"})
+    @GetMapping({"/active_employee"})
         public String active_employee(Model model){
             model.addAttribute("activePage", "active_employee");
             model.addAttribute("employee", employeeRepository.findByStatus("Active"));
@@ -41,7 +43,7 @@ public class ActiveEmployeeController {
                 employeeRepository.findByEmail(employee.getEmail());
 
         if (existingEmployee.isPresent()){
-            return "redirect:/admin/employee/active_employee?error";
+            return "redirect:/active_employee?error";
         }
 
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
@@ -53,7 +55,7 @@ public class ActiveEmployeeController {
 
 
     // id getter
-    @GetMapping({"/admin/employee/active_employee/{id}"})
+    @GetMapping({"/active_employee/{id}"})
     @ResponseBody
     public Employee getEmployee(@PathVariable Long id) {
 
@@ -62,7 +64,7 @@ public class ActiveEmployeeController {
     }
 
     // edit
-    @PostMapping({"/admin/update"})
+    @PostMapping({"/update"})
     public String update(@ModelAttribute Employee employee){
 
         Employee existing = employeeRepository.findById(employee.getId())
@@ -76,7 +78,7 @@ public class ActiveEmployeeController {
         if (existingEmployee.isPresent()
             && !existingEmployee.get().getId().equals(employee.getId())) {
 
-        return "redirect:/admin/employee/active_employee?error";
+        return "redirect:/active_employee?error";
         }
 
         existing.setFirstname(employee.getFirstname());
@@ -95,12 +97,12 @@ public class ActiveEmployeeController {
 
 
         employeeRepository.save(existing);
-        return "redirect:/admin/employee/active_employee?update_success";
+        return "redirect:/active_employee?update_success";
     }
 
 
     // for the deactivate
-    @PostMapping({"/admin/deactivate"})
+    @PostMapping({"/deactivate"})
     public String deactivate(@ModelAttribute Employee employee){
         Employee existing = employeeRepository.findById(employee.getId())
             .orElseThrow(() -> new RuntimeException("Employee not found"));
@@ -108,7 +110,7 @@ public class ActiveEmployeeController {
      existing.setStatus("Inactive");
 
      employeeRepository.save(existing);
-     return "redirect:/admin/employee/active_employee?deactivate_success";
+     return "redirect:/active_employee?deactivate_success";
     }
 
     

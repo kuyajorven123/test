@@ -1,4 +1,4 @@
-package com.project.test;
+package com.project.test.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
+import com.project.test.model.Employee;
+import com.project.test.model.EmployeeRepository;
 
 
 @Controller
@@ -18,7 +20,7 @@ public class InactiveEmployeeController {
     EmployeeRepository employeeRepository;
 
     
-    @GetMapping({"/admin/employee/inactive_employee/{id}"})
+    @GetMapping({"/inactive_employee/{id}"})
     @ResponseBody
     public Employee getEmployee(@PathVariable Long id) {
 
@@ -27,7 +29,7 @@ public class InactiveEmployeeController {
     }
     
 
-    @GetMapping({"/admin/employee/inactive_employee"})
+    @GetMapping({"/inactive_employee"})
         public String inactive_employee(Model model){
             model.addAttribute("activePage", "inactive_employee");
              model.addAttribute("employee", employeeRepository.findByStatus("Inactive"));
@@ -35,7 +37,7 @@ public class InactiveEmployeeController {
         }
         
 
-    @PostMapping({"/admin/reactivate"})
+    @PostMapping({"/reactivate"})
     public String reactivate(@ModelAttribute Employee employee){
         Employee existing = employeeRepository.findById(employee.getId())
             .orElseThrow(() -> new RuntimeException("Employee not found"));
@@ -43,14 +45,14 @@ public class InactiveEmployeeController {
      existing.setStatus("Active");
 
      employeeRepository.save(existing);
-     return "redirect:/admin/employee/inactive_employee?reactivate_success";
+     return "redirect:/inactive_employee?reactivate_success";
     }
 
 
-    @PostMapping({"/admin/delete"})
+    @PostMapping({"/delete"})
     public String deleted(@RequestParam Long id) {
         employeeRepository.deleteById(id);
-        return "redirect:/admin/employee/inactive_employee?delete_success";
+        return "redirect:/inactive_employee?delete_success";
     }
 
 }

@@ -72,7 +72,7 @@ $('#modal-edit').on('show.bs.modal', function (event) {
     var id = button.data('id');
 
     $.ajax({
-        url: '/admin/employee/active_employee/' + id,
+        url: '/admin/active_employee/' + id,
         type: 'GET',
         success: function(employee) {
 
@@ -101,7 +101,7 @@ $('#modal-deactivate').on('show.bs.modal', function (event) {
     var id = button.data('id');
 
     $.ajax({
-        url: '/admin/employee/active_employee/' + id,
+        url: '/admin/active_employee/' + id,
         type: 'GET',
         success: function(employee) {
             $('#deactivateEmployeeId').val(employee.id);
@@ -127,7 +127,7 @@ $('#modal-activate').on('show.bs.modal', function (event) {
     var id = button.data('id');
 
     $.ajax({
-        url: '/admin/employee/inactive_employee/' + id,
+        url: '/admin/inactive_employee/' + id,
         type: 'GET',
         success: function(employee) {
             $('#reactivateEmployeeId').val(employee.id);
@@ -150,7 +150,7 @@ $('#modal-delete').on('show.bs.modal', function (event) {
     var id = button.data('id');
 
     $.ajax({
-        url: '/admin/employee/inactive_employee/' + id,
+        url: '/admin/inactive_employee/' + id,
         type: 'GET',
         success: function(employee) {
             $('#deleteEmployeeId').val(employee.id);
