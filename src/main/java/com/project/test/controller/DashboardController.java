@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 @Controller
 public class DashboardController {
 
-    @GetMapping({"/dashboard"})
+    @GetMapping({"/","/dashboard"})
         public String dashboard(Model model){
             model.addAttribute("activePage", "dashboard");
             return "pages/dashboard";
