@@ -19,11 +19,9 @@ public class DashboardController {
             model.addAttribute("activePage", "settings");
             return "pages/settings";
         }
-
-    @GetMapping({"/admin"})
-        public String admin(Model model){
-            model.addAttribute("activePage", "admin");
-            return "pages/admin";
+    
+    @GetMapping({"/login"})
+        public String login(){
+            return "pages/login";
         }
-
 }

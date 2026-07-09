@@ -24,14 +24,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/login", "/adminlte/**").permitAll()
                         .requestMatchers("/active_employee").hasRole("ADMIN")
                         .requestMatchers("/inactive_employee").hasRole("ADMIN")
                         .requestMatchers("/","/dashboard").hasAnyRole("ADMIN","EMPLOYEE")
                         .requestMatchers("/settings").hasAnyRole("ADMIN","EMPLOYEE")
                         .anyRequest().authenticated())
                 .formLogin(form -> form
-                        // .loginPage("/login")
+                        .loginPage("/login")
                         .defaultSuccessUrl("/dashboard")
                         .permitAll())
                         
@@ -39,7 +39,7 @@ public class SecurityConfig {
                         .accessDeniedPage("/access_denied"))
 
                 .logout(logout -> logout
-                        // .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/login?logout")
                         .permitAll());
 
         return http.build();

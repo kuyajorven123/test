@@ -32,34 +32,20 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>test@email.com</td>
-                    <td>test</td>
-                    <td>Active</td>
-                    <td>Admin</td>
+                  <tr th:each="employees : ${employee}">
+                    <td th:text="${employees.firstname}"></td>
+                    <td th:text="${employees.middlename}"></td>
+                    <td th:text="${employees.lastname}"></td>
+                    <td th:text="${employees.position}"></td>
+                    <td th:text="${employees.email}"></td>
+                    <td th:text="${employees.address}"></td>
+                    <td th:text="${#temporals.format(employees.birthday, 'MMMM dd, yyyy')}"></td>
+                    <td th:text="${employees.role}"></td>
                     <td>
                         <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i> Edit</button> 
                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
                     </td>
                   </tr> 
-                  <tr>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>test@email.com</td>
-                    <td>test</td>
-                    <td>Active</td>
-                    <td>Admin</td>
-                    <td>
-                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i> Edit</button> 
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-                    </td>
-                  </tr>
                   </tfoot>
                 </table>
               </div>

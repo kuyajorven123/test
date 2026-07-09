@@ -38,6 +38,7 @@
                     <th>Address</th>
                     <th>Birthday</th>
                     <th>Status</th>
+                    <th>Role</th>
                     <th>Tools</th>
                   </tr>
                   </thead>
@@ -51,6 +52,7 @@
                     <td th:text="${employees.address}"></td>
                     <td th:text="${#temporals.format(employees.birthday, 'MMMM dd, yyyy')}"></td>
                     <td th:text="${employees.status}"></td>
+                    <td th:text="${employees.role}"></td>
                     <td>
                         <button type="button" class="btn btn-sm btn-success edit-employee-btn" data-toggle="modal" data-target="#modal-activate" th:data-id="${employees.id}"><i class="fas fa-check"></i> Activate</button> 
                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete" th:data-id="${employees.id}"><i class="fas fa-trash"></i> Delete</button>
@@ -74,7 +76,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form th:action="@{/admin/reactivate}" method="post">
+            <form th:action="@{/reactivate}" method="post">
             <div class="modal-body">
 
               <input type="hidden" id="reactivateEmployeeId" name="id">
@@ -103,7 +105,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form th:action="@{/admin/delete}" method="post">
+            <form th:action="@{/delete}" method="post">
             <div class="modal-body">
               <input type="hidden" id="deleteEmployeeId" name="id">
               <p>Are you sure you want to delete this employee?</p>

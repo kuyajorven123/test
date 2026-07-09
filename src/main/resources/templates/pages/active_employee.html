@@ -51,6 +51,7 @@
                     <th>Address</th>
                     <th>Birthday</th>
                     <th>Status</th>
+                    <th>Role</th>
                     <th>Tools</th>
                   </tr>
                   </thead>
@@ -64,6 +65,7 @@
                     <td th:text="${employees.address}"></td>
                     <td th:text="${#temporals.format(employees.birthday, 'MMMM dd, yyyy')}"></td>
                     <td th:text="${employees.status}"></td>
+                    <td th:text="${employees.role}"></td>
                     <td>
                         <button type="button" class="btn btn-sm btn-success edit-employee-btn" data-toggle="modal" data-target="#modal-edit" th:data-id="${employees.id}"><i class="fas fa-edit"></i> Edit</button> 
                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-deactivate" th:data-id="${employees.id}"><i class="fas fa-ban"></i> Deactivate</button>
@@ -87,7 +89,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form th:action="@{/admin/create}" method="post">
+              <form th:action="@{/create}" method="post">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6">
@@ -173,7 +175,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form th:action="@{/admin/update}" method="post">
+              <form th:action="@{/update}" method="post">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6">
@@ -260,7 +262,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form th:action="@{/admin/deactivate}" method="post">
+            <form th:action="@{/deactivate}" method="post">
             <div class="modal-body">
 
               <input type="hidden" id="deactivateEmployeeId" name="id">

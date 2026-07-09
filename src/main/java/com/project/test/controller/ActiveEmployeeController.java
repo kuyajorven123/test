@@ -31,13 +31,14 @@ public class ActiveEmployeeController {
     @GetMapping({"/active_employee"})
         public String active_employee(Model model){
             model.addAttribute("activePage", "active_employee");
-            model.addAttribute("employee", employeeRepository.findByStatus("Active"));
+            model.addAttribute("employee", employeeRepository.findByStatusAndRole("Active", "EMPLOYEE"));
+            // model.addAttribute("employee", employeeRepository.findByRole("EMPLOYEE"));
             return "pages/active_employee";
         }
     
 
     // create
-    @PostMapping({"/admin/create"})
+    @PostMapping({"/create"})
     public String create(@ModelAttribute Employee employee){
         Optional<Employee> existingEmployee =
                 employeeRepository.findByEmail(employee.getEmail());

@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
     Optional<Employee> findByEmail(String email);
-    List<Employee> findByStatus(String status);
+    List<Employee> findByStatusAndRole(String status, String role);
+    // List<Employee> findByRole(String role);
 }
