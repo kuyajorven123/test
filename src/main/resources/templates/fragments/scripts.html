@@ -74,16 +74,16 @@ $('#modal-edit').on('show.bs.modal', function (event) {
     $.ajax({
         url: '/active_employee/' + id,
         type: 'GET',
-        success: function(employee) {
+        success: function(user) {
 
-            $('#employeeId').val(employee.id);
-            $('#firstname').val(employee.firstname);
-            $('#middlename').val(employee.middlename);
-            $('#lastname').val(employee.lastname);
-            $('#address').val(employee.address);
-            $('#position').val(employee.position);
-            $('#email').val(employee.email);
-            $('#birthday').val(employee.birthday);
+            $('#employeeId').val(user.id);
+            $('#firstname').val(user.firstname);
+            $('#middlename').val(user.middlename);
+            $('#lastname').val(user.lastname);
+            $('#address').val(user.address);
+            $('#position').val(user.position);
+            $('#email').val(user.email);
+            $('#birthday').val(user.birthday);
         },
         error: function() {
             alert("Unable to load employee.");
@@ -103,11 +103,11 @@ $('#modal-deactivate').on('show.bs.modal', function (event) {
     $.ajax({
         url: '/active_employee/' + id,
         type: 'GET',
-        success: function(employee) {
-            $('#deactivateEmployeeId').val(employee.id);
-            $('#deactivateName').text(employee.firstname + ' ' + employee.middlename + ' ' + employee.lastname);
-            $('#deactivatePosition').text(employee.position);
-            $('#deactivateStatus').text(employee.status);
+        success: function(user) {
+            $('#deactivateEmployeeId').val(user.id);
+            $('#deactivateName').text(user.firstname + ' ' + user.middlename + ' ' + user.lastname);
+            $('#deactivatePosition').text(user.position);
+            $('#deactivateStatus').text(user.status);
         },
         error: function() {
             alert("Unable to load employee.");
@@ -129,11 +129,11 @@ $('#modal-activate').on('show.bs.modal', function (event) {
     $.ajax({
         url: '/inactive_employee/' + id,
         type: 'GET',
-        success: function(employee) {
-            $('#reactivateEmployeeId').val(employee.id);
-            $('#reactivateName').text(employee.firstname + ' ' + employee.middlename + ' ' + employee.lastname);
-            $('#reactivatePosition').text(employee.position);
-            $('#reactivateStatus').text(employee.status);
+        success: function(user) {
+            $('#reactivateEmployeeId').val(user.id);
+            $('#reactivateName').text(user.firstname + ' ' + user.middlename + ' ' + user.lastname);
+            $('#reactivatePosition').text(user.position);
+            $('#reactivateStatus').text(user.status);
         },
         error: function() {
             alert("Unable to load employee.");
@@ -152,11 +152,11 @@ $('#modal-delete').on('show.bs.modal', function (event) {
     $.ajax({
         url: '/inactive_employee/' + id,
         type: 'GET',
-        success: function(employee) {
-            $('#deleteEmployeeId').val(employee.id);
-            $('#deleteName').text(employee.firstname + ' ' + employee.middlename + ' ' + employee.lastname);
-            $('#deletePosition').text(employee.position);
-            $('#deleteStatus').text(employee.status);
+        success: function(user) {
+            $('#deleteEmployeeId').val(user.id);
+            $('#deleteName').text(user.firstname + ' ' + user.middlename + ' ' + user.lastname);
+            $('#deletePosition').text(user.position);
+            $('#deleteStatus').text(user.status);
         },
         error: function() {
             alert("Unable to load employee.");

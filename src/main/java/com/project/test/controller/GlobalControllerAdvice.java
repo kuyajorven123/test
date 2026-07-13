@@ -5,15 +5,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
 
-import com.project.test.model.EmployeeRepository;
+import com.project.test.model.UserRepository;
 
 @ControllerAdvice
 public class GlobalControllerAdvice {
 
-    private final EmployeeRepository employeeRepository;
+    private final UserRepository userRepository;
 
-    public GlobalControllerAdvice(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public GlobalControllerAdvice(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @ModelAttribute
@@ -21,8 +21,8 @@ public class GlobalControllerAdvice {
 
         if (authentication != null && authentication.isAuthenticated()) {
 
-            employeeRepository.findByEmail(authentication.getName())
-                    .ifPresent(employee -> model.addAttribute("loggedInUser", employee));
+            userRepository.findByEmail(authentication.getName())
+                    .ifPresent(user -> model.addAttribute("loggedInUser", user));
         }
     }
 }

@@ -11,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.project.test.model.Employee;
-import com.project.test.model.EmployeeRepository;
+import com.project.test.model.User;
+import com.project.test.model.UserRepository;
 
 
 
@@ -20,97 +20,97 @@ import com.project.test.model.EmployeeRepository;
 public class ActiveEmployeeController {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
-    public ActiveEmployeeController(EmployeeRepository employeeRepository, PasswordEncoder passwordEncoder){
-        this.employeeRepository = employeeRepository;
+    public ActiveEmployeeController(UserRepository userRepository, PasswordEncoder passwordEncoder){
+        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping({"/active_employee"})
         public String active_employee(Model model){
             model.addAttribute("activePage", "active_employee");
-            model.addAttribute("employee", employeeRepository.findByStatusAndRole("Active", "EMPLOYEE"));
-            // model.addAttribute("employee", employeeRepository.findByRole("EMPLOYEE"));
+            model.addAttribute("user", userRepository.findByStatusAndRole("Active", "EMPLOYEE"));
+            // model.addAttribute("user", userRepository.findByRole("EMPLOYEE"));
             return "pages/active_employee";
         }
     
 
     // create
     @PostMapping({"/create"})
-    public String create(@ModelAttribute Employee employee){
-        Optional<Employee> existingEmployee =
-                employeeRepository.findByEmail(employee.getEmail());
+    public String create(@ModelAttribute User user){
+        Optional<User> existingUser =
+                userRepository.findByEmail(user.getEmail());
 
-        if (existingEmployee.isPresent()){
+        if (existingUser.isPresent()){
             return "redirect:/active_employee?error";
         }
 
-        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
-        employee.setStatus("Active");
-        employee.setRole("EMPLOYEE");
-        employeeRepository.save(employee);
-        return "redirect:/admin/employee/active_employee?success";
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setStatus("Active");
+        user.setRole("EMPLOYEE");
+        userRepository.save(user);
+        return "redirect:/active_employee?success";
     }
 
 
     // id getter
     @GetMapping({"/active_employee/{id}"})
     @ResponseBody
-    public Employee getEmployee(@PathVariable Long id) {
+    public User getUser(@PathVariable Long id) {
 
-        return employeeRepository.findById(id)
+        return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Employee not found"));
     }
 
     // edit
     @PostMapping({"/update"})
-    public String update(@ModelAttribute Employee employee){
+    public String update(@ModelAttribute User user){
 
-        Employee existing = employeeRepository.findById(employee.getId())
+        User existing = userRepository.findById(user.getId())
             .orElseThrow(() -> new RuntimeException("Employee not found"));
 
 
             // email checker
-        Optional<Employee> existingEmployee =
-                employeeRepository.findByEmail(employee.getEmail());
+        Optional<User> existingUser =
+                userRepository.findByEmail(user.getEmail());
 
-        if (existingEmployee.isPresent()
-            && !existingEmployee.get().getId().equals(employee.getId())) {
+        if (existingUser.isPresent()
+            && !existingUser.get().getId().equals(user.getId())) {
 
         return "redirect:/active_employee?error";
         }
 
-        existing.setFirstname(employee.getFirstname());
-        existing.setMiddlename(employee.getMiddlename());
-        existing.setLastname(employee.getLastname());
-        existing.setAddress(employee.getAddress());
-        existing.setBirthday(employee.getBirthday());
-        existing.setPosition(employee.getPosition());
-        existing.setEmail(employee.getEmail());
+        existing.setFirstname(user.getFirstname());
+        existing.setMiddlename(user.getMiddlename());
+        existing.setLastname(user.getLastname());
+        existing.setAddress(user.getAddress());
+        existing.setBirthday(user.getBirthday());
+        existing.setPosition(user.getPosition());
+        existing.setEmail(user.getEmail());
 
-        if (employee.getPassword() != null && !employee.getPassword().isBlank()) {
+        if (user.getPassword() != null && !user.getPassword().isBlank()) {
         existing.setPassword(
-                passwordEncoder.encode(employee.getPassword())
+                passwordEncoder.encode(user.getPassword())
         );
     }
 
 
-        employeeRepository.save(existing);
+        userRepository.save(existing);
         return "redirect:/active_employee?update_success";
     }
 
 
     // for the deactivate
     @PostMapping({"/deactivate"})
-    public String deactivate(@ModelAttribute Employee employee){
-        Employee existing = employeeRepository.findById(employee.getId())
+    public String deactivate(@ModelAttribute User user){
+        User existing = userRepository.findById(user.getId())
             .orElseThrow(() -> new RuntimeException("Employee not found"));
 
      existing.setStatus("Inactive");
 
-     employeeRepository.save(existing);
+     userRepository.save(existing);
      return "redirect:/active_employee?deactivate_success";
     }
 

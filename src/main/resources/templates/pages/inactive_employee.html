@@ -43,19 +43,19 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr th:each="employees : ${employee}">
-                    <td th:text="${employees.firstname}"></td>
-                    <td th:text="${employees.middlename}"></td>
-                    <td th:text="${employees.lastname}"></td>
-                    <td th:text="${employees.position}"></td>
-                    <td th:text="${employees.email}"></td>
-                    <td th:text="${employees.address}"></td>
-                    <td th:text="${#temporals.format(employees.birthday, 'MMMM dd, yyyy')}"></td>
-                    <td th:text="${employees.status}"></td>
-                    <td th:text="${employees.role}"></td>
+                  <tr th:each="users : ${user}">
+                    <td th:text="${users.firstname}"></td>
+                    <td th:text="${users.middlename}"></td>
+                    <td th:text="${users.lastname}"></td>
+                    <td th:text="${users.position}"></td>
+                    <td th:text="${users.email}"></td>
+                    <td th:text="${users.address}"></td>
+                    <td th:text="${#temporals.format(users.birthday, 'MMMM dd, yyyy')}"></td>
+                    <td th:text="${users.status}"></td>
+                    <td th:text="${users.role}"></td>
                     <td>
-                        <button type="button" class="btn btn-sm btn-success edit-employee-btn" data-toggle="modal" data-target="#modal-activate" th:data-id="${employees.id}"><i class="fas fa-check"></i> Activate</button> 
-                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete" th:data-id="${employees.id}"><i class="fas fa-trash"></i> Delete</button>
+                        <button type="button" class="btn btn-sm btn-success edit-employee-btn" data-toggle="modal" data-target="#modal-activate" th:data-id="${users.id}"><i class="fas fa-check"></i> Activate</button> 
+                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete" th:data-id="${users.id}"><i class="fas fa-trash"></i> Delete</button>
                     </td>
                   </tr> 
                   </thead>

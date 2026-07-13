@@ -9,45 +9,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
-import com.project.test.model.Employee;
-import com.project.test.model.EmployeeRepository;
+import com.project.test.model.User;
+import com.project.test.model.UserRepository;
 
 @Controller
 public class InactiveEmployeeController {
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    UserRepository userRepository;
 
+    // id getter
     @GetMapping({ "/inactive_employee/{id}" })
     @ResponseBody
-    public Employee getEmployee(@PathVariable Long id) {
+    public User getUser(@PathVariable Long id) {
 
-        return employeeRepository.findById(id)
+        return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Employee not found"));
     }
 
     @GetMapping({ "/inactive_employee" })
     public String inactive_employee(Model model) {
         model.addAttribute("activePage", "inactive_employee");
-        model.addAttribute("employee", employeeRepository.findByStatusAndRole("Inactive", "EMPLOYEE"));
-        // model.addAttribute("employee", employeeRepository.findByRole("EMPLOYEE"));
+        model.addAttribute("user", userRepository.findByStatusAndRole("Inactive", "EMPLOYEE"));
+        // model.addAttribute("user", userRepository.findByRole("EMPLOYEE"));
         return "pages/inactive_employee";
     }
 
     @PostMapping({ "/reactivate" })
-    public String reactivate(@ModelAttribute Employee employee) {
-        Employee existing = employeeRepository.findById(employee.getId())
+    public String reactivate(@ModelAttribute User user) {
+        User existing = userRepository.findById(user.getId())
                 .orElseThrow(() -> new RuntimeException("Employee not found"));
 
         existing.setStatus("Active");
 
-        employeeRepository.save(existing);
+        userRepository.save(existing);
         return "redirect:/inactive_employee?reactivate_success";
     }
 
     @PostMapping({ "/delete" })
     public String deleted(@RequestParam Long id) {
-        employeeRepository.deleteById(id);
+        userRepository.deleteById(id);
         return "redirect:/inactive_employee?delete_success";
     }
 

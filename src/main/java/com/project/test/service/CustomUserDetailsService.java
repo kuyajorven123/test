@@ -5,14 +5,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.project.test.model.EmployeeRepository;
-import com.project.test.model.Employee;
+import com.project.test.model.UserRepository;
+import com.project.test.model.User;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-     private final EmployeeRepository employeeRepository;
+     private final UserRepository employeeRepository;
 
-    public CustomUserDetailsService(EmployeeRepository employeeRepository) {
+    public CustomUserDetailsService(UserRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
@@ -20,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
 
-        Employee employee = employeeRepository.findByEmail(email)
+        User employee = employeeRepository.findByEmail(email)
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found"));
 
