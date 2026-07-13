@@ -10,10 +10,33 @@
 
 <body>
   <div layout:fragment="content">
+    <!-- Alerts -->
+    <div th:if="${param.error}" class="alert alert-danger">
+      Email Already Exist!
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+
+    <div th:if="${param.success}" class="alert alert-success">
+      Admin Successfully Created!
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+
+    <div th:if="${param.update_success}" class="alert alert-success">
+      Admin Successfully Updated!
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+
+    <div th:if="${delete_success}" class="alert alert-success">
+      Employee Deleted Successfully!
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    <!-- /Alerts -->
+
     <h1 style="font-size: xx-large;">Admin</h1>
     <div class="card">
       <div class="card-header">
-        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-add"><i class="fas fa-plus"></i> Add Admin</button>
+        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-add"><i class="fas fa-plus"></i>
+          Add Admin</button>
       </div>
       <!-- /.card-header -->
       <div class="card-body">
