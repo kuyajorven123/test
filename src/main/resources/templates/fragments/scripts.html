@@ -165,4 +165,33 @@ $('#modal-delete').on('show.bs.modal', function (event) {
 
 });
 </script>
+
+<!-- For Admin Edit Modal -->
+<script>
+$('#modal-edit-admin').on('show.bs.modal', function (event) {
+
+    var button = $(event.relatedTarget);
+    var id = button.data('id');
+
+    $.ajax({
+        url: '/admin/' + id,
+        type: 'GET',
+        success: function(user) {
+
+            $('#employeeId').val(user.id);
+            $('#firstname').val(user.firstname);
+            $('#middlename').val(user.middlename);
+            $('#lastname').val(user.lastname);
+            $('#address').val(user.address);
+            $('#position').val(user.position);
+            $('#email').val(user.email);
+            $('#birthday').val(user.birthday);
+        },
+        error: function() {
+            alert("Unable to load employee.");
+        }
+    });
+
+});
+</script>
 </div>
