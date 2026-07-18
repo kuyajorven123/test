@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 
@@ -62,11 +63,11 @@ public class AdminController {
     }
 
     // update
-    @PostMapping({ "/update" })
+    @PostMapping({ "/update_admin" })
     public String update(@ModelAttribute User user) {
 
         User existing = userRepository.findById(user.getId())
-                .orElseThrow(() -> new RuntimeException("Employee not found"));
+                .orElseThrow(() -> new RuntimeException("Admin not found"));
 
         // email checker
         Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
@@ -74,7 +75,7 @@ public class AdminController {
         if (existingUser.isPresent()
                 && !existingUser.get().getId().equals(user.getId())) {
 
-            return "redirect:/active_employee?error";
+            return "redirect:/admin?error";
         }
 
         existing.setFirstname(user.getFirstname());
@@ -91,7 +92,13 @@ public class AdminController {
         }
 
         userRepository.save(existing);
-        return "redirect:/active_employee?update_success";
+        return "redirect:/admin?update_success";
     }
 
+    // delete
+    @PostMapping({ "/delete_admin" })
+    public String deleted(@RequestParam Long id) {
+        userRepository.deleteById(id);
+        return "redirect:/admin?delete_success";
+    }
 }

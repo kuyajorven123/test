@@ -143,6 +143,7 @@ $('#modal-activate').on('show.bs.modal', function (event) {
 });
 </script>
 
+<!-- For Employee Delete Modal -->
 <script>
 $('#modal-delete').on('show.bs.modal', function (event) {
 
@@ -188,7 +189,31 @@ $('#modal-edit-admin').on('show.bs.modal', function (event) {
             $('#birthday').val(user.birthday);
         },
         error: function() {
-            alert("Unable to load employee.");
+            alert("Unable to load admin.");
+        }
+    });
+
+});
+</script>
+
+<!-- For Admin Delete Modal -->
+ <script>
+$('#modal-delete-admin').on('show.bs.modal', function (event) {
+
+    var button = $(event.relatedTarget);
+    var id = button.data('id');
+
+    $.ajax({
+        url: '/admin/' + id,
+        type: 'GET',
+        success: function(user) {
+            $('#deleteEmployeeId').val(user.id);
+            $('#deleteName').text(user.firstname + ' ' + user.middlename + ' ' + user.lastname);
+            $('#deletePosition').text(user.position);
+            $('#deleteStatus').text(user.status);
+        },
+        error: function() {
+            alert("Unable to load admin.");
         }
     });
 
